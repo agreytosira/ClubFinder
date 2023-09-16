@@ -1,17 +1,16 @@
 class ClubItem extends HTMLElement {
+    constructor() {
+        super();
+        this.shadowDOM = this.attachShadow({ mode: "open" });
+    }
 
-  constructor() {
-    super();
-    this.shadowDOM = this.attachShadow({mode: 'open'});
-  }
+    set club(club) {
+        this._club = club;
+        this.render();
+    }
 
-  set club(club) {
-    this._club = club;
-    this.render();
-  }
-
-  render() {
-    this.shadowDOM.innerHTML = `
+    render() {
+        this.shadowDOM.innerHTML = `
       <style>
         * {
           margin: 0;
@@ -47,13 +46,13 @@ class ClubItem extends HTMLElement {
         }
       </style>
       
-      <img class="fan-art-club" src="${this._club.fanArt}" alt="Fan Art">
+      <img class="fan-art-club" src="${this._club.strTeamBadge}" alt="Fan Art">
       <div class="club-info">
-        <h2>${this._club.name}</h2>
-        <p>${this._club.description}</p>
+        <h2>${this._club.strTeam}</h2>
+        <p>${this._club.strDescriptionEN}</p>
       </div>
     `;
-  }
+    }
 }
 
-customElements.define('club-item', ClubItem);
+customElements.define("club-item", ClubItem);
